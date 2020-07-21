@@ -1,12 +1,18 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 const db = require('./config/keys').mongoURL;
+const passport = require('passport');
 
 const Users =require('./router/api/Users');
 const Profile =require('./router/api/Profile');
 const Post =require('./router/api/Post');
 
+
 const app = express();
+//body parser middle ware
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
 
  mongoose.set('useNewUrlParser', true);
  mongoose.set('useFindAndModify', false);
@@ -16,8 +22,11 @@ mongoose.connect(db).then(()=>console.log('mangodb connected succesfuly')).catch
 
 
 
-app.get('/',(req,res)=>res.send('hellow'));
+app.use(passport.initialize());
 
+
+//password config
+require('./config/passport')(passport);
 
 //routes
 
