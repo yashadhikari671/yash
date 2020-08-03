@@ -74,7 +74,7 @@ router.post('/signin',(req,res)=>{
 				res.status(400).json(errors)
 			}else{
 //payload
-			const payload ={id:user.id, name:user.name, email:user.email};
+			const payload ={id:user.id, name:user.name, email:user.email , avatar:user.avatar};
 
 //jwt token
 			console.log(key)
@@ -100,7 +100,7 @@ router.get('/current', passport.authenticate('jwt', { session: false }),
         	id:req.user.id,
         	name:req.user.name,
         	email:req.user.email,
-        	avater:req.user.avater
+        	avatar:req.user.avatar
         }
         	);
     }

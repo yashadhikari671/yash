@@ -29,11 +29,12 @@ const validRegisterInput = (data)=> {
  	  if (Validator.isEmpty(data.password)){
  	 	errors.password = 'password field is require'; 
  	 }
- 	 if (Validator.isEmpty(data.password2)){
- 	 	errors.password2 = 'confirm password field is require'; 
- 	 }
+ 	 
  	 if (data.password !== data.password2){
  	 	errors.password2 = 'password must match'; 
+ 	 }
+ 	 if (Validator.isEmpty(data.password2)){
+ 	 	errors.password2 = 'confirm password field is require'; 
  	 }
 
  	 return{
